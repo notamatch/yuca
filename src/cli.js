@@ -1,7 +1,21 @@
 import yargs from 'yargs';
 import jsonfile from 'jsonfile';
+import mqtt from 'mqtt';
 
 const OPTIONS = {
+    host: {
+        alias: 'h',
+        describe: 'Mqtt broker host',
+        nargs: 1,
+        required: true
+    },
+    port: {
+        alias: 'p',
+        describe: 'Mqtt broker port',
+        nargs: 1,
+        required: false,
+        default: 1883
+    },
     file: {
         alias: 'f',
         describe: 'Load json file as message. Exclusive with \'message\'',
@@ -27,12 +41,11 @@ function parseArguments() {
         yargs.alias(key, current.alias)
         .describe(key, current.describe)
         .nargs(key, current.nargs)
-        .required(key, current.required);
+        .required(key, current.required)
+        .default(key, current.default);
     });
     yargs.strict(true)
-    .help('h')
     .conflicts('file', 'message')
-    .alias('h', 'help')
     .example('yuca --file path/to/file.json', 'Uses a json file as message')
     .example('yuca --message \'Hello world\'', 'Sends a string message');
     return yargs.argv;
