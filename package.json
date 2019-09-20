@@ -16,6 +16,7 @@
   "homepage": "https://github.com/kevinalvarezortiz/yuca#readme",
   "dependencies": {
     "esm": "^3.2.25",
+    "jsonfile": "^5.0.0",
     "yargs": "^14.0.0"
   },
   "private": true,
