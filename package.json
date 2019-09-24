@@ -1,0 +1,32 @@
+{
+  "name": "yuca",
+  "version": "1.0.0",
+  "description": "Tool to interact with MQTT broker, helps to test devices/services that work over MQTT protocol.",
+  "main": "cli.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinalvarezortiz/yuca.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinalvarezortiz/yuca/issues"
+  },
+  "homepage": "https://github.com/kevinalvarezortiz/yuca#readme",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "jsonfile": "^5.0.0",
+    "mqtt": "^3.0.0",
+    "yargs": "^14.0.0"
+  },
+  "private": true,
+  "bin": {
+    "yuca": "bin/yuca"
+  },
+  "keywords": [
+    "cli",
+    "yuca",
+    "mqtt"
+  ]
+}
