@@ -20,7 +20,9 @@
     "mqtt": "^3.0.0",
     "yargs": "^14.0.0"
   },
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "yuca": "bin/yuca"
   },
