@@ -25,8 +25,7 @@ const OPTIONS = {
         alias: 'p',
         describe: 'Mqtt broker port',
         nargs: 1,
-        required: false,
-        default: 1883
+        required: false
     },
     topic: {
         alias: 't',
@@ -132,11 +131,22 @@ function getMessage(args) {
  */
 function sendMessage(options, message) {
     const protocol = options.tls ? PROTOCOLS.MQTTS : PROTOCOLS.MQTT;
-    const client = mqtt.connect(`${protocol}://${options.host}:${options.port}`);
+    let stringConnection = `${protocol}://${options.host}`;
+    stringConnection += options.port ?  `:${options.port}` : '';
+    const client = mqtt.connect(stringConnection);
     client.on('connect', function() {
         client.publish(options.topic, message, function() {
             client.end();
         });
+    });
+    client.on('error', function(error) {
+        console.error(error);
+        client.end();
+    });
+    client.on('reconnect', function() {
+        console.error(`Could not connect to ${stringConnection}`);
+        client.end();
+        process.exit(1);
     });
 }
 
