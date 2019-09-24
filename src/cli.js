@@ -1,6 +1,7 @@
 import yargs from 'yargs';
 import jsonfile from 'jsonfile';
 import mqtt from 'mqtt';
+import path from 'path';
 
 const PROTOCOLS = {
     MQTT: 'mqtt',
@@ -37,7 +38,13 @@ const OPTIONS = {
         alias: 'f',
         describe: 'Load json file as message. Exclusive with \'message\'',
         nargs: 1,
-        required: false
+        required: false,
+        coerce: function(arg) {
+            if (arg) {
+                return path.resolve(arg);
+            }
+            return arg;
+        }
     },
     message: {
         alias: 'm',
@@ -60,7 +67,8 @@ function parseArguments() {
         yargs.describe(key, current.describe)
         .nargs(key, current.nargs)
         .required(key, current.required)
-        .default(key, current.default);
+        .default(key, current.default)
+        .coerce(key, current.coerce);
     });
     yargs.strict(true)
     .conflicts('file', 'message')
@@ -126,8 +134,9 @@ function sendMessage(options, message) {
     const protocol = options.tls ? PROTOCOLS.MQTTS : PROTOCOLS.MQTT;
     const client = mqtt.connect(`${protocol}://${options.host}:${options.port}`);
     client.on('connect', function() {
-        client.publish(options.topic, message);
-        client.end();
+        client.publish(options.topic, message, function() {
+            client.end();
+        });
     });
 }
 
