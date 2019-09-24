@@ -1,7 +1,7 @@
 {
   "name": "yuca",
   "version": "1.0.0",
-  "description": "Tool to interact with MQTT events, helps to test devices/services that work on MQTT protocol.",
+  "description": "Tool to interact with MQTT broker, helps to test devices/services that work over MQTT protocol.",
   "main": "cli.js",
   "scripts": {},
   "repository": {
@@ -9,7 +9,7 @@
     "url": "git+https://github.com/kevinalvarezortiz/yuca.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kevinalvarezortiz/yuca/issues"
   },
