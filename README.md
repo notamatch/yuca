@@ -11,7 +11,7 @@ npm install -g yuca
 # Usage
 
 ```
-yuca --host test.mosquitto.org --topic /topic/to/test --message 'lpm'
+yuca --host test.mosquitto.org --topic /topic/to/test --message 'hello world'
 yuca --host test.mosquitto.org --topic /topic/to/test --file /path/to/file.json
 ```
 
