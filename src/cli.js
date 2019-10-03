@@ -71,8 +71,8 @@ function parseArguments() {
     });
     yargs.strict(true)
     .conflicts('file', 'message')
-    .example('yuca --file path/to/file.json', 'Uses a json file as message')
-    .example('yuca --message \'Hello world\'', 'Sends a string message');
+    .example('yuca --host test.mosquitto.org --topic /topic/to/test --file path/to/file.json', 'Uses a json file as message')
+    .example('yuca --host test.mosquitto.org --topic /topic/to/test --message \'Hello world\'', 'Sends a string message');
     return yargs.argv;
 }
 
