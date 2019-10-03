@@ -1,6 +1,6 @@
 {
   "name": "yuca",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tool to interact with MQTT broker, helps to test devices/services that work over MQTT protocol.",
   "main": "cli.js",
   "scripts": {},
